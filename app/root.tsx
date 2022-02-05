@@ -10,7 +10,13 @@ import type { MetaFunction } from "remix";
 import styles from "./tailwind.css";
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    { rel: "stylesheet", href: styles },
+    {
+      rel: "icon",
+      href: "guitar.png",
+    },
+  ];
 }
 
 export const meta: MetaFunction = () => {
