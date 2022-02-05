@@ -1,3 +1,5 @@
+import { NavLink } from "remix";
+
 const tiers = [
   {
     name: "Hobby",
@@ -54,6 +56,16 @@ export default function Index() {
     <div className="bg-green-400">
       <h1>Welcome to Remix</h1>
       <ul>
+        <li>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? "text-blue-500" : "text-blue-100"
+            }
+          >
+            about
+          </NavLink>
+        </li>
         <li>
           <a
             target="_blank"
