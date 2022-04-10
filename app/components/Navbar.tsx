@@ -1,9 +1,15 @@
 import { NavLink } from "remix";
 
-type Props = {};
+export type RoutesConfig = {
+  name: string;
+  href: string;
+}[];
 
-export const Navbar: React.FC<Props> = (props) => {
-  console.log("\n", "\n", `props = `, props, "\n", "\n");
+type Props = {
+  routesConfig: RoutesConfig;
+};
+
+export const Navbar: React.FC<Props> = ({ routesConfig }) => {
   const inactiveStyle =
     "text-blue-100 p-3 text-2xl hover:text-red-900 hover:underline mr-2";
 
@@ -12,19 +18,15 @@ export const Navbar: React.FC<Props> = (props) => {
 
   return (
     <nav className="flex p-2 bg-slate-600 text-slate-200">
-      <NavLink
-        to="/"
-        className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
-      >
-        home
-      </NavLink>
-
-      <NavLink
-        to="/about"
-        className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
-      >
-        About
-      </NavLink>
+      {routesConfig.map((route) => (
+        <NavLink
+          key={route.name}
+          to={route.href}
+          className={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          {route.name}
+        </NavLink>
+      ))}
     </nav>
   );
 };
